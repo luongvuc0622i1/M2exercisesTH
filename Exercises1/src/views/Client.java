@@ -22,11 +22,7 @@ public class Client {
         int index = input.nextInt();
         switch (index) {
             case 1:
-//                HotelController manager = new HotelController("manager1");
-//                Hotel hotel = creatNewHotel();
-//                manager.addNewHotel(hotel);
-//                manager.editHotelById(1, hotel);
-//                System.out.println(HotelController.hotelList);
+                isAManager();
                 break;
             case 2:
                 isAReceptionist();
@@ -36,15 +32,37 @@ public class Client {
         }
     }
 
+    private static void isAManager() {
+        HotelController manager = new HotelController("Quản lý");
+        System.out.println("1. Thêm 1 phòng mới");
+        System.out.println("2. Sửa thông tin của 1 phòng");
+        System.out.println("3. Hiển thị danh sách phòng");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập lựa chọn vào đây");
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+            case 2:
+            case 3:
+            default:
+                System.out.println("Nhập sai lựa chọn!");
+        }
+//                Hotel hotel = creatNewHotel();
+//                manager.addNewHotel(hotel);
+//                manager.editHotelById(1, hotel);
+//                System.out.println(HotelController.hotelList);
+    }
+
     private static void isAReceptionist() {
-        OrderController receptionist = new OrderController("lễ tân");
+        OrderController receptionist = new OrderController("Lễ tân");
         System.out.println("1. Thêm mới order");
         System.out.println("2. Sửa order");
         System.out.println("3. Xoá order");
         System.out.println("4. Hiển thị danh sách order");
-        Scanner scanner0 = new Scanner(System.in);
+        System.out.println("5. Tính số tiền của một order");
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập lựa chọn vào đây: ");
-        int index = scanner0.nextInt();
+        int index = scanner.nextInt();
         switch (index) {
             case 1:
                 addOrder(receptionist);
@@ -58,9 +76,23 @@ public class Client {
             case 4:
                 displayOrder(receptionist);
                 break;
+            case 5:
+                caculatorMoneyOrder(receptionist);
+                break;
             default:
                 System.out.println("Nhập sai lựa chọn!");
         }
+    }
+
+    private static void caculatorMoneyOrder(OrderController receptionist) {
+        Scanner scanner1 = new Scanner(System.in);
+        System.out.print("Nhập tên file nguồn: ");
+        String path = scanner1.nextLine();
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.print("Nhập vào số CMND của khách hàng cần tính tiền: ");
+        String idCard = scanner2.nextLine();
+        int money = receptionist.calculateMoneyOrder(idCard, path);
+        System.out.println("Số tiền vị khách này cần thanh toán là: " + money);
     }
 
     private static void displayOrder(OrderController receptionist) {

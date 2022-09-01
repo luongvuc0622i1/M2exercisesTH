@@ -13,6 +13,17 @@ public class OrderController {
     private static ReadWriteData readWriteData = ReadWriteFile.getInstance();
     public static List<Order> orderList = new ArrayList<>();
 
+    public int calculateMoneyOrder(String idCard, String path) {
+        orderList = readWriteData.readData(path);
+        int money = 1;
+        for (int i = 0; i < orderList.size() ; i++) {
+            if (orderList.get(i).getPeople().getIdCard().equals(idCard)) {
+                money = orderList.get(i).getHotel().getPrice() * orderList.get(i).getDateRent();
+            }
+        }
+        return money;
+    }
+
     public void display(String path) {
         orderList = readWriteData.readData(path);
         if(orderList.isEmpty()){
