@@ -5,6 +5,6 @@ import model.Order;
 import java.util.List;
 
 public interface ReadWriteData {
-    List<Order> readData();
-    void writeData(List<Order> books);
+    List<Order> readData(String pathIn);
+    void writeData(List<Order> books, String pathOut);
 }

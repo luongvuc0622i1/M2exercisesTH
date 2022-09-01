@@ -5,9 +5,6 @@ import controller.OrderController;
 import model.Hotel;
 import model.Order;
 import model.People;
-import storage.ReadWriteData;
-import storage.ReadWriteFile;
-import storage.ReadWriteFileExcel;
 
 import java.util.List;
 import java.util.Scanner;
@@ -17,16 +14,89 @@ public class Client {
     private static List<Hotel> hotelList = HotelController.hotelList;
 
     public static void main(String[] args) {
-        HotelController manager = new HotelController("manager1");
-        OrderController letan = new OrderController("letan");
+        System.out.println("Bạn là:");
+        System.out.println("1. Quản lý");
+        System.out.println("2. Lễ tân/Khách");
+        Scanner input = new Scanner(System.in);
+        System.out.print("Nhập lựa chọn vào đây: ");
+        int index = input.nextInt();
+        switch (index) {
+            case 1:
+//                HotelController manager = new HotelController("manager1");
+//                Hotel hotel = creatNewHotel();
+//                manager.addNewHotel(hotel);
+//                manager.editHotelById(1, hotel);
+//                System.out.println(HotelController.hotelList);
+                break;
+            case 2:
+                isAReceptionist();
+                break;
+            default:
+                System.out.println("Nhập sai lựa chọn!");
+        }
+    }
 
-//        Hotel hotel = creatNewHotel();
-//        manager.addNewHotel(hotel);
-//        manager.editHotelById(1, hotel);
-//        System.out.println(HotelController.hotelList);
+    private static void isAReceptionist() {
+        OrderController receptionist = new OrderController("lễ tân");
+        System.out.println("1. Thêm mới order");
+        System.out.println("2. Sửa order");
+        System.out.println("3. Xoá order");
+        System.out.println("4. Hiển thị danh sách order");
+        Scanner scanner0 = new Scanner(System.in);
+        System.out.print("Nhập lựa chọn vào đây: ");
+        int index = scanner0.nextInt();
+        switch (index) {
+            case 1:
+                addOrder(receptionist);
+                break;
+            case 2:
+                editOrder(receptionist);
+                break;
+            case 3:
+                removeOrder(receptionist);
+                break;
+            case 4:
+                displayOrder(receptionist);
+                break;
+            default:
+                System.out.println("Nhập sai lựa chọn!");
+        }
+    }
+
+    private static void displayOrder(OrderController receptionist) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập tên file nguồn: ");
+        String path = scanner.nextLine();
+        receptionist.display(path);
+    }
+
+    private static void removeOrder(OrderController receptionist) {
+        Scanner scanner1 = new Scanner(System.in);
+        System.out.print("Nhập tên file nguồn: ");
+        String path = scanner1.nextLine();
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.print("Nhập vào vị trí muốn xoá: ");
+        int index = scanner2.nextInt();
+        receptionist.removeOrderById(index, path);
+    }
+
+    private static void editOrder(OrderController receptionist) {
+        Scanner scanner1 = new Scanner(System.in);
+        System.out.print("Nhập tên file nguồn: ");
+        String path = scanner1.nextLine();
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.print("Nhập vào vị trí muốn sửa: ");
+        int index = scanner2.nextInt();
         Order order = creatNewOrder();
-        letan.addNewOrder(order);
-        letan.display();
+        receptionist.editOrderById(index, order, path);
+    }
+
+    private static void addOrder(OrderController receptionist) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập tên file nguồn: ");
+        String path = scanner.nextLine();
+        Order order = creatNewOrder();
+        receptionist.addNewOrder(order, path);
     }
 
     private static Hotel creatNewHotel() {

@@ -7,7 +7,7 @@ import java.util.List;
 public class TestRead {
     public static void main(String[] args) {
         ReadWriteData readWriteData = ReadWriteFile.getInstance();
-        List<Order> orderList = readWriteData.readData();
+        List<Order> orderList = readWriteData.readData("orderList");
         for (int i=0 ; i < orderList.size() ; i++) {
             System.out.println(orderList.get(i));
         }

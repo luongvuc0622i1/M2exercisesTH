@@ -11,9 +11,10 @@ import java.util.List;
 public class OrderController {
     private String name;
     private static ReadWriteData readWriteData = ReadWriteFile.getInstance();
-    public static List<Order> orderList = readWriteData.readData();
+    public static List<Order> orderList = new ArrayList<>();
 
-    public void display() {
+    public void display(String path) {
+        orderList = readWriteData.readData(path);
         if(orderList.isEmpty()){
             System.out.println("Chưa có phòng nào được đặt!");
         }else {
@@ -23,19 +24,22 @@ public class OrderController {
         }
     }
 
-    public void addNewOrder(Order order) {
+    public void addNewOrder(Order order, String path) {
+        orderList = readWriteData.readData(path);
         orderList.add(order);
-        readWriteData.writeData(orderList);
+        readWriteData.writeData(orderList, path);
     }
 
-    public void editOrderById(int index, Order order) {
+    public void editOrderById(int index, Order order, String path) {
+        orderList = readWriteData.readData(path);
         orderList.set(index, order);
-        readWriteData.writeData(orderList);
+        readWriteData.writeData(orderList, path);
     }
 
-    public void removeOrderById(int index) {
+    public void removeOrderById(int index, String path) {
+        orderList = readWriteData.readData(path);
         orderList.remove(index);
-        readWriteData.writeData(orderList);
+        readWriteData.writeData(orderList, path);
     }
 
     public OrderController() {

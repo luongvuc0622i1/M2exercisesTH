@@ -18,11 +18,11 @@ public class ReadWriteFileExcel implements ReadWriteData {
     }
 
     @Override
-    public List<Order> readData() {
+    public List<Order> readData(String pathIn) {
         List<Order> orderList = new ArrayList<>();
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("orderList.dat");
+            fis = new FileInputStream(pathIn);
             ObjectInputStream ois = new ObjectInputStream(fis);
             Object obj = ois.readObject();
             orderList = (List<Order>) obj;
@@ -33,9 +33,9 @@ public class ReadWriteFileExcel implements ReadWriteData {
     }
 
     @Override
-    public void writeData(List<Order> orderList) {
+    public void writeData(List<Order> orderList, String pathOut) {
         try {
-            FileOutputStream fos = new FileOutputStream("orderList.dat");
+            FileOutputStream fos = new FileOutputStream(pathOut);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(orderList);
             oos.close();
