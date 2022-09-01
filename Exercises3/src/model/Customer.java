@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Customer implements Serializable {
     private String ownerName;
-    private String Address;
+    private String address;
     private int idElectricMeter;
 
     public Customer() {
@@ -12,7 +12,7 @@ public class Customer implements Serializable {
 
     public Customer(String ownerName, String address, int idElectricMeter) {
         this.ownerName = ownerName;
-        Address = address;
+        this.address = address;
         this.idElectricMeter = idElectricMeter;
     }
 
@@ -25,11 +25,11 @@ public class Customer implements Serializable {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public int getIdElectricMeter() {
@@ -44,7 +44,7 @@ public class Customer implements Serializable {
     public String toString() {
         return "customer{" +
                 "ownerName='" + ownerName + '\'' +
-                ", Address='" + Address + '\'' +
+                ", Address='" + address + '\'' +
                 ", idElectricMeter=" + idElectricMeter +
                 '}';
     }
