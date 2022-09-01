@@ -5,6 +5,10 @@ import controller.OrderController;
 import model.Hotel;
 import model.Order;
 import model.People;
+import storage.ReadWriteData;
+import storage.ReadWriteFile;
+import storage.ReadWriteFileExcel;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,12 +17,31 @@ public class Client {
     private static List<Hotel> hotelList = HotelController.hotelList;
 
     public static void main(String[] args) {
-        HotelController manager1 = new HotelController("manager1");
+        HotelController manager = new HotelController("manager1");
         OrderController letan = new OrderController("letan");
 
+//        Hotel hotel = creatNewHotel();
+//        manager.addNewHotel(hotel);
+//        manager.editHotelById(1, hotel);
+//        System.out.println(HotelController.hotelList);
         Order order = creatNewOrder();
         letan.addNewOrder(order);
-        System.out.println(OrderController.orderList);
+        letan.display();
+    }
+
+    private static Hotel creatNewHotel() {
+        Hotel hotel;
+        Scanner scanner1 = new Scanner(System.in);
+        System.out.print("Nhập vào mã phòng: ");
+        int idRoom = scanner1.nextInt();
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.print("Nhập vào loại phòng: ");
+        String typeRoom = scanner2.nextLine();
+        Scanner scanner3 = new Scanner(System.in);
+        System.out.print("Nhập vào giá phòng: ");
+        int price = scanner3.nextInt();
+        hotel = new Hotel(idRoom, typeRoom, price);
+        return hotel;
     }
 
     private static Order creatNewOrder() {
@@ -52,7 +75,7 @@ public class Client {
         Hotel roomChecked = null;
         do {
             Scanner input5 = new Scanner(System.in);
-            System.out.print("Nhập vào số phòng đã chọn: ");
+            System.out.print("Nhập vào mã phòng đã chọn: ");
             int idRoom = input5.nextInt();
             for ( int i = 0 ; i < hotelList.size() ; i++ ) {
                 if (hotelList.get(i).getTypeRoom().equals(typeRoom)) {

@@ -17,6 +17,10 @@ public class PeopleController {
         peopleList.set(index, people);
     }
 
+    public void removePeopleById(int index) {
+        peopleList.remove(index);
+    }
+
     public PeopleController() {
     }
 

@@ -1,20 +1,41 @@
 package controller;
 
 import model.Order;
+import storage.ReadWriteData;
+import storage.ReadWriteFile;
+import storage.ReadWriteFileExcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderController {
     private String name;
-    public static List<Order> orderList = new ArrayList<>();
+    private static ReadWriteData readWriteData = ReadWriteFile.getInstance();
+    public static List<Order> orderList = readWriteData.readData();
+
+    public void display() {
+        if(orderList.isEmpty()){
+            System.out.println("Chưa có phòng nào được đặt!");
+        }else {
+            for ( Order order : orderList ) {
+                System.out.println(order);
+            }
+        }
+    }
 
     public void addNewOrder(Order order) {
         orderList.add(order);
+        readWriteData.writeData(orderList);
     }
 
     public void editOrderById(int index, Order order) {
         orderList.set(index, order);
+        readWriteData.writeData(orderList);
+    }
+
+    public void removeOrderById(int index) {
+        orderList.remove(index);
+        readWriteData.writeData(orderList);
     }
 
     public OrderController() {

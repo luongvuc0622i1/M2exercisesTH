@@ -1,6 +1,8 @@
 package model;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
     private int dateRent;
     private People people;
     private Hotel hotel;
