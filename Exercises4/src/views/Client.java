@@ -48,7 +48,10 @@ public class Client {
         System.out.print("Nhập tên file nguồn: ");
         String path = scanner.nextLine();
         Date checkTime = inputCheckTime();
-        libraryManager.display(path);
+        List<IdCard> orderCheckList = libraryManager.displayCheckTime(checkTime, path);
+        for (IdCard order : orderCheckList) {
+            System.out.println(order);
+        }
     }
 
     private static void displayOrder(LibraryManager libraryManager) {
@@ -99,7 +102,7 @@ public class Client {
 
     private static int inputId() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập vào số  mượn: ");
+        System.out.println("Nhập vào số phiếu mượn: ");
         int id = scanner.nextInt();
         return id;
     }
