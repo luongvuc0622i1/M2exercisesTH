@@ -1,20 +1,19 @@
 package model;
 
-import javax.smartcardio.Card;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class IdCard implements Serializable {
     private int id;
-    private LocalDate startTime;
-    private LocalDate endTime;
+    private Date startTime;
+    private Date endTime;
     private String bookName;
     private Student student;
 
     public IdCard() {
     }
 
-    public IdCard(int id, LocalDate startTime, LocalDate endTime, String bookName, Student student) {
+    public IdCard(int id, Date startTime, Date endTime, String bookName, Student student) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -30,19 +29,19 @@ public class IdCard implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDate startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDate getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDate endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
